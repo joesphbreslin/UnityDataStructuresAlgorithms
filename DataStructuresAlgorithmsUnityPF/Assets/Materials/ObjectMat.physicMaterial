@@ -6,8 +6,8 @@ PhysicMaterial:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: ObjectMat
-  dynamicFriction: 0.6
-  staticFriction: 0.6
+  dynamicFriction: 0.21
+  staticFriction: 0.26
   bounciness: 0.36
   frictionCombine: 0
   bounceCombine: 0

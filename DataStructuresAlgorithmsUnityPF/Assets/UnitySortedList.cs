@@ -43,6 +43,7 @@ public class UnitySortedList : MonoBehaviour {
         string key = removeKeyField.text;
         if (unitySortedList.ContainsKey(key))
         {
+            Destroy(unitySortedList[key].gameObject);
             unitySortedList.Remove(key);
             outputText.text = key + " is removed";
         }
@@ -74,7 +75,7 @@ public class UnitySortedList : MonoBehaviour {
         string key = itemKeyField.text;
         if (unitySortedList.ContainsKey(key))
         {
-           outputText.text = "Item Key and GameObject Name: " + key + ", " + unitySortedList[key].name;
+           outputText.text =  key + ", " + unitySortedList[key].name;
         }
         else
         {
