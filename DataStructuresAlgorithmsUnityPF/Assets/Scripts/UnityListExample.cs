@@ -17,8 +17,12 @@ public class UnityListExample : MonoBehaviour {
 
     public void GetItemName()
     {
+       
         int index = int.Parse(itemField.text);
-        outputText.text = "Item[" + index.ToString() + "] + name: " + unityList[index].name;
+        if (index < unityList.Count)
+            outputText.text = "Item[" + index.ToString() + "] + name: " + unityList[index].name;
+        else
+            outputText.text = "Try a lower Integer";
     }
 
     public void Add()
@@ -38,6 +42,7 @@ public class UnityListExample : MonoBehaviour {
                 break;
         }
         unityList.Add(Instantiate(Resources.Load(shape), transform, false) as GameObject);
+        outputText.text = unityList[unityList.Count -1].name + " Added";
     }
 
     public void Clear()
@@ -47,18 +52,26 @@ public class UnityListExample : MonoBehaviour {
             Destroy(g);
         }
         unityList.Clear();
+        outputText.text = "Items cleared";
     }
 
     public void Remove()
-    {
+    {       
         int index = int.Parse(removeField.text);
-        Destroy(unityList[index].gameObject);
-        unityList.RemoveAt(index);
+        if (index < unityList.Count)
+        {
+            Destroy(unityList[index].gameObject);
+            unityList.Remove(unityList[index]);
+            outputText.text = "Item " + index + " is removed.";
+        }
+        else
+            outputText.text = "Try a lower Integer";
     }
 
     public void Reverse()
     {
         unityList.Reverse();
+        outputText.text = "Item list reversed";
     }
 
     public void Insert()
@@ -81,13 +94,23 @@ public class UnityListExample : MonoBehaviour {
       
         Destroy(unityList[index]);
         unityList.Insert(index,Instantiate(Resources.Load(shape), transform, false) as GameObject);
+        outputText.text = unityList[index].name + " Inserted  at " + index + " position";
+
     }
 
     public void RemoveAt()
     {
         int index = int.Parse(removeAtField.text);
-        Destroy(unityList[index].gameObject);  
-        unityList.RemoveAt(index);
+        if (index < unityList.Count)
+        {
+            Destroy(unityList[index].gameObject);
+            unityList.RemoveAt(index);
+            outputText.text = "Item " + index + " is removed.";
+        }
+        else
+        {
+            outputText.text = "Try a lower Integer";
+        }
     }
     #endregion
 
