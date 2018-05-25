@@ -4,14 +4,10 @@ using UnityEngine.UI;
 
 public class UnityListExample : MonoBehaviour {
 
-    public InputField itemField, addField, removeField, removeAtField;
+    public InputField itemField, removeField, removeAtField, insertField;
+    public Dropdown addDropDown, insertDropDown;
     public Text outputText;
     List<GameObject> unityList = new List<GameObject>();
-
-    void Update()
-    {
-
-    }
 
     #region Button Functions
     public void Count()
@@ -27,7 +23,7 @@ public class UnityListExample : MonoBehaviour {
 
     public void Add()
     {
-        int index = int.Parse(addField.text);    
+        int index = addDropDown.value;   
         string shape;
         switch (index)
         {
@@ -41,7 +37,6 @@ public class UnityListExample : MonoBehaviour {
                 shape = "Pyramid";
                 break;
         }
-        //GameObject newObj = Instantiate(Resources.Load(shape), transform,false) as GameObject;      
         unityList.Add(Instantiate(Resources.Load(shape), transform, false) as GameObject);
     }
 
@@ -57,12 +52,35 @@ public class UnityListExample : MonoBehaviour {
     public void Remove()
     {
         int index = int.Parse(removeField.text);
+        Destroy(unityList[index].gameObject);
         unityList.RemoveAt(index);
     }
 
     public void Reverse()
     {
         unityList.Reverse();
+    }
+
+    public void Insert()
+    {
+        int index = int.Parse(insertField.text);
+        int shapeIndex = insertDropDown.value;
+        string shape;
+        switch (shapeIndex)
+        {
+            case 0:
+                shape = "Cube";
+                break;
+            case 1:
+                shape = "Sphere";
+                break;
+            default:
+                shape = "Pyramid";
+                break;
+        }
+      
+        Destroy(unityList[index]);
+        unityList.Insert(index,Instantiate(Resources.Load(shape), transform, false) as GameObject);
     }
 
     public void RemoveAt()
