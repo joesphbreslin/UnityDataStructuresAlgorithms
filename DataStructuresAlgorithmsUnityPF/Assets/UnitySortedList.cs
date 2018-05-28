@@ -13,13 +13,20 @@ public class UnitySortedList : MonoBehaviour {
     public void AddKeyValue()
     {
         string key = addKeyField.text;
-        unitySortedList.Add(key, Instantiate(Resources.Load("SortedListCube"), transform, false) as GameObject);
-        Text [] texts = unitySortedList[key].gameObject.GetComponentsInChildren<Text>();
-        foreach(Text t in texts)
+        if (!unitySortedList.ContainsKey(key))
         {
-            t.text = key;
+            unitySortedList.Add(key, Instantiate(Resources.Load("SortedListCube"), transform, false) as GameObject);
+            Text[] texts = unitySortedList[key].gameObject.GetComponentsInChildren<Text>();
+            foreach (Text t in texts)
+            {
+                t.text = key;
+            }
+            outputText.text = key + " gameobject added";
         }
-        outputText.text = key + " gameobject added";
+        else
+        {
+            outputText.text = "Use different Key";
+        }
     }
 
     public void RemoveAt()
@@ -43,8 +50,15 @@ public class UnitySortedList : MonoBehaviour {
         string key = removeKeyField.text;
         if (unitySortedList.ContainsKey(key))
         {
-            Destroy(unitySortedList[key].gameObject);
-            unitySortedList.Remove(key);
+            foreach (string k  in unitySortedList.Keys) 
+            {
+                if (k == key)
+                {
+                    Destroy(unitySortedList[k].gameObject);
+                    unitySortedList.Remove(k);
+                }
+               
+            }
             outputText.text = key + " is removed";
         }
         else
