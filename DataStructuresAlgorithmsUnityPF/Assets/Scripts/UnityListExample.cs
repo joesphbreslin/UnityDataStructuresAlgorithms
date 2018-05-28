@@ -8,7 +8,6 @@ public class UnityListExample : MonoBehaviour {
     public Dropdown addDropDown, insertDropDown;
     public Text outputText;
     List<GameObject> unityList = new List<GameObject>();
-
     #region Button Functions
     public void Count()
     {
