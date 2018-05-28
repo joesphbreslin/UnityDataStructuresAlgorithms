@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class UnityLinkedList : MonoBehaviour {
     //Generic implementation is a doubly linked list
     LinkedList<GameObject> unityLinkedList = new LinkedList<GameObject>();
-    Text outputText;
-    Dropdown inputObject;
+    public Text outputText;
+    public Dropdown inputObject;
     string shape;
    
     public void Find(GameObject g)
